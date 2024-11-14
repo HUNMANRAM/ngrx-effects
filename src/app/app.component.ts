@@ -6,6 +6,7 @@ import { AsyncPipe, CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { getUsers } from './user.action';
 import { FormsModule } from '@angular/forms';
+import { selectAllUsers, selectUserByEmail } from './user.selectors';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class AppComponent {
   name:string = '';
   //user$!: Observable<any>;
   users:any[]=[];
+  users$!:Observable<any>;
   employeeData:{name:string,email:string,phone:string}={name:'',email:'',phone:''};
 
   // constructor(private store:Store<any>){
@@ -49,15 +51,27 @@ export class AppComponent {
 
 
    getemployeeData() {
-    console.log("THis Name",this.name);
-    for (let user of this.users) {
-      if (user.name === this.name) { // case sensitive
-        console.log("HJKL",user);
-        this.employeeData =user;
-        return user
-      }
-    }
-    return null
+   // this.users$ = this.store.select(selectAllUsers);
+    this.users$ = this.store.select(selectUserByEmail(this.name));
+
+    this.users$.subscribe((data)=>{
+      this.employeeData =data;
+    })
+
+
+    this.users$.subscribe((users)=>{
+      console.log("USEREE USERESSS");
+      console.log(users);
+    })
+    // console.log("THis Name",this.name);
+    // for (let user of this.users) {
+    //   if (user.name === this.name) { // case sensitive
+    //     console.log("HJKL",user);
+    //     this.employeeData =user;
+    //     return user
+    //   }
+    // }
+    // return null
   }
   
    
