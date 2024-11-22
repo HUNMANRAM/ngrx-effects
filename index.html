@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TLM Roles Sidebar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .sidebar {
+      border: 1px solid #ffa500;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      max-width: 300px;
+    }
+    .role-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .role-item:last-child {
+      border-bottom: none;
+    }
+    .role-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #007bff;
+    }
+    .role-count {
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body class="p-3">
+
+    <div class="row">
+
+  <div class=" col-4 sidebar">
+    <h5 class="text-center">TLM Roles</h5>
+    <div class="role-item">
+      <span class="role-name">Reliability Quality Maintenance Champion</span>
+      <span class="role-count">45</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Quality Assurance Technician</span>
+      <span class="role-count">15</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Quality Assurance Technician (Failure Technician)</span>
+      <span class="role-count">32</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Human Monitoring Champion (HMC)</span>
+      <span class="role-count">46</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Hydrogen Power Champion (HPC)</span>
+      <span class="role-count">50</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Damage Hold (DH) Champion</span>
+      <span class="role-count">47</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">ANST Inspector Level 2</span>
+      <span class="role-count">71</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">ANST Inspector Level 3</span>
+      <span class="role-count">33</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">CMMS Champion</span>
+      <span class="role-count">28</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">P&L Network Inspector</span>
+      <span class="role-count">11</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Black Belt</span>
+      <span class="role-count">8</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Green Belt</span>
+      <span class="role-count">91</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Logistic Support</span>
+      <span class="role-count">71</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Kaizen Facilitator</span>
+      <span class="role-count">66</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">TLM MES Scheduler</span>
+      <span class="role-count">61</span>
+    </div>
+    <div class="role-item">
+      <span class="role-name">Radiation Safety Officer (RSO)</span>
+      <span class="role-count">71</span>
+    </div>
+  </div>
+
+  <div class="col-8">
+
+    HII HHIII
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Team View</th>
+            <th>
+              Role
+              <div class="dropdown">
+                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                  Filter
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">All</a></li>
+                  <li><a class="dropdown-item" href="#">Maintenance Assistance</a></li>
+                  <li><a class="dropdown-item" href="#">Quality Assurance</a></li>
+                </ul>
+              </div>
+            </th>
+            <th>A#</th>
+            <th>Certification Status</th>
+            <th>Job Code</th>
+            <th>Job Group</th>
+            <th>Location</th>
+            <th>Selection</th>
+            <th>Certification Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Team View">Abdelkrim Benthieb</td>
+            <td data-label="Role">Maintenance Assistance</td>
+            <td data-label="A#">04167498</td>
+            <td data-label="Certification Status">TWS</td>
+            <td data-label="Job Code">NAF</td>
+            <td data-label="Job Group">MRO-Champion</td>
+            <td data-label="Location">Algeria</td>
+            <td data-label="Selection">Messued</td>
+            <td data-label="Certification Status" class="text-danger">Expired</td>
+          </tr>
+          <tr>
+            <td data-label="Team View">Abdelkrim Chouaib</td>
+            <td data-label="Role">Quality Assurance Technician</td>
+            <td data-label="A#">04167498</td>
+            <td data-label="Certification Status">TWS</td>
+            <td data-label="Job Code">NAF</td>
+            <td data-label="Job Group">MDO-Champion</td>
+            <td data-label="Location">Algeria</td>
+            <td data-label="Selection">Messued</td>
+            <td data-label="Certification Status" class="text-warning">Not Assigned</td>
+          </tr>
+          <tr>
+            <td data-label="Team View">Rami Bennabi</td>
+            <td data-label="Role">Lean Site Champion</td>
+            <td data-label="A#">04167498</td>
+            <td data-label="Certification Status">TWS</td>
+            <td data-label="Job Code">NAF</td>
+            <td data-label="Job Group">MDO-Champion</td>
+            <td data-label="Location">Algeria</td>
+            <td data-label="Selection">Messued</td>
+            <td data-label="Certification Status" class="text-success">Valid</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+
+</div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
