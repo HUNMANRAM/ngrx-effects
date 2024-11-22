@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dropdown Filters</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .filter-row {
+      border: 1px solid orange;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .dropdown-label {
+      font-size: 0.9rem;
+      margin-bottom: 3px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="filter-row d-flex justify-content-between align-items-center">
+      <!-- Team View Dropdown -->
+      <div class="flex-grow-1 me-2">
+        <label class="dropdown-label">Team View</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="team-a">Team A</option>
+          <option value="team-b">Team B</option>
+          <option value="team-c">Team C</option>
+        </select>
+      </div>
+
+      <!-- Role Dropdown -->
+      <div class="flex-grow-1 me-2">
+        <label class="dropdown-label">Role</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="manager">Manager</option>
+          <option value="technician">Technician</option>
+          <option value="developer">Developer</option>
+        </select>
+      </div>
+
+      <!-- Certification Status Dropdown -->
+      <div class="flex-grow-1 me-2">
+        <label class="dropdown-label">Certification Status</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="valid">Valid</option>
+          <option value="expired">Expired</option>
+          <option value="not-assigned">Not Assigned</option>
+        </select>
+      </div>
+
+      <!-- Job Code Dropdown -->
+      <div class="flex-grow-1 me-2">
+        <label class="dropdown-label">Job Code</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="04167498">04167498</option>
+          <option value="04167499">04167499</option>
+          <option value="04167500">04167500</option>
+        </select>
+      </div>
+
+      <!-- Location Dropdown -->
+      <div class="flex-grow-1 me-2">
+        <label class="dropdown-label">Location</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="algeria">Algeria</option>
+          <option value="india">India</option>
+          <option value="usa">USA</option>
+        </select>
+      </div>
+
+      <!-- Selection Dropdown -->
+      <div class="flex-grow-1">
+        <label class="dropdown-label">Selection</label>
+        <select class="form-select">
+          <option value="all">All</option>
+          <option value="messued">Messued</option>
+          <option value="selected">Selected</option>
+          <option value="not-selected">Not Selected</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
