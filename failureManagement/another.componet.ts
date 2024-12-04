@@ -1,91 +1,79 @@
-import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Subject, Subscription } from 'rxjs';
-import { debounceTime, throttleTime, filter } from 'rxjs/operators';
-import { ItemFacade } from './item.facade';
-import { ItemStateService } from './item.state';
+import { debounceTime, filter } from 'rxjs/operators';
+import { loadFailureCases } from './store/failure-cases.actions';
+import { 
+  selectFailureCases, 
+  selectLoading, 
+  selectCompletedCount, 
+  selectLockedCount, 
+  selectTotalCasesCount 
+} from './store/failure-cases.selectors';
 
 @Component({
-  selector: 'app-items',
+  selector: 'app-failure-cases',
   template: `
-    <div #scrollContainer class="item-list" (scroll)="onScroll()">
-      <div *ngFor="let item of items" class="item">
-        {{ item.name }}
+    <div class="failure-cases-list" (scroll)="onScroll()">
+      <div *ngFor="let case of failureCases$ | async" class="case">
+        {{ case.ActivityId }} - {{ case.daysrun }} days
       </div>
     </div>
-    <div *ngIf="loading" class="loading">Loading...</div>
+    <div *ngIf="loading$ | async" class="loading">Loading...</div>
+    <div class="summary">
+      Completed: {{ completedCount$ | async }}, Locked: {{ lockedCount$ | async }}, Total: {{ totalCasesCount$ | async }}
+    </div>
   `,
   styles: [`
-    .item-list {
-      height: 400px;
-      overflow-y: auto;
-      border: 1px solid #ccc;
-    }
-    .item {
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-    .loading {
-      text-align: center;
-      padding: 10px;
-    }
+    .failure-cases-list { height: 400px; overflow-y: auto; }
+    .case { padding: 10px; border-bottom: 1px solid #ddd; }
+    .loading { text-align: center; padding: 10px; }
+    .summary { padding: 10px; font-weight: bold; }
   `],
 })
-export class ItemsComponent implements OnInit, OnDestroy {
-  @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef;
+export class FailureCasesComponent implements OnInit, OnDestroy {
+  failureCases$ = this.store.select(selectFailureCases);
+  loading$ = this.store.select(selectLoading);
+  completedCount$ = this.store.select(selectCompletedCount);
+  lockedCount$ = this.store.select(selectLockedCount);
+  totalCasesCount$ = this.store.select(selectTotalCasesCount);
 
-  items: any[] = []; // Array to store items
-  loading = false; // Loading state
-
-  private scrollSubject = new Subject<void>(); // Subject to emit scroll events
+  private scrollSubject = new Subject<void>(); // Subject to handle scroll events
   private scrollSubscription!: Subscription;
-  private stateSubscription!: Subscription;
+  currentPage = 1;
 
-  constructor(
-    private itemFacade: ItemFacade,
-    private itemState: ItemStateService
-  ) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
     // Initial data load
-    this.loadItems();
+    this.store.dispatch(loadFailureCases({ page: this.currentPage }));
 
-    // Subscribe to state changes manually
-    this.stateSubscription = this.itemState.state$.subscribe(state => {
-      this.items = state.items;
-      this.loading = state.loading;
-    });
-
-    // Handle scroll events with debouncing and throttling
+    // Handle debounced scroll events
     this.scrollSubscription = this.scrollSubject
       .pipe(
-        debounceTime(200), // Wait 200ms after the last scroll event
-        throttleTime(500), // Allow one event every 500ms
-        filter(() => this.isAtBottom()) // Proceed only if scrolled to the bottom
+        debounceTime(200), // Debounce scroll events by 200ms
+        filter(() => this.shouldLoadMore()) // Only trigger when scrolled to the bottom
       )
-      .subscribe(() => this.loadItems());
+      .subscribe(() => {
+        this.currentPage++;
+        this.store.dispatch(loadFailureCases({ page: this.currentPage }));
+      });
   }
 
   ngOnDestroy() {
-    // Clean up subscriptions
+    // Cleanup subscription
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
-    }
-    if (this.stateSubscription) {
-      this.stateSubscription.unsubscribe();
     }
   }
 
   onScroll() {
-    // Emit scroll event to the Subject
+    // Emit a scroll event to the subject
     this.scrollSubject.next();
   }
 
-  private loadItems() {
-    this.itemFacade.loadItems();
-  }
-
-  private isAtBottom(): boolean {
-    const container = this.scrollContainer.nativeElement;
+  private shouldLoadMore(): boolean {
+    const container = document.querySelector('.failure-cases-list') as HTMLElement;
     return container.scrollHeight - container.scrollTop === container.clientHeight;
   }
 }
