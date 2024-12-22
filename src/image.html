@@ -1,16 +1,28 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-header-with-image',
+  selector: 'app-custom-header',
   template: `
     <wj-flex-grid [itemsSource]="data">
       <wj-flex-grid-column 
-        [header]="'<div class=\'header-cell\'><img src=\'/assets/user-icon.png\' alt=\'User Icon\' class=\'header-icon\'> Name</div>'" 
+        [header]="'Name'" 
         binding="name">
+        <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+          <div class="header-cell">
+            <img src="/assets/user-icon.png" alt="User Icon" class="header-icon">
+            <span>Name</span>
+          </div>
+        </ng-template>
       </wj-flex-grid-column>
       <wj-flex-grid-column 
-        [header]="'<div class=\'header-cell\'><img src=\'/assets/email-icon.png\' alt=\'Email Icon\' class=\'header-icon\'> Email</div>'" 
+        [header]="'Email'" 
         binding="email">
+        <ng-template wjFlexGridCellTemplate [cellType]="'ColumnHeader'">
+          <div class="header-cell">
+            <img src="/assets/email-icon.png" alt="Email Icon" class="header-icon">
+            <span>Email</span>
+          </div>
+        </ng-template>
       </wj-flex-grid-column>
     </wj-flex-grid>
   `,
@@ -26,7 +38,7 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class HeaderWithImageComponent {
+export class CustomHeaderComponent {
   data = [
     { name: 'John Doe', email: 'john.doe@example.com' },
     { name: 'Jane Smith', email: 'jane.smith@example.com' },
