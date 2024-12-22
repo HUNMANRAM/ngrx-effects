@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.breadcrumb-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e2a38; /* Dark background color */
+  padding: 10px 20px;
+  color: white;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.breadcrumb-item {
+  font-size: 14px;
+  color: lightgray;
+}
+
+.breadcrumb-separator {
+  margin: 0 5px;
+  color: white;
+}
+
+.breadcrumb-item.active {
+  font-weight: bold;
+  color: white;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  overflow-x: auto; /* Makes tabs scrollable on small screens */
+}
+
+.tab {
+  background-color: #324b5f; /* Tab background */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  margin-right: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tab.active {
+  background-color: #1a73e8; /* Active tab color */
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.search-box {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+  background-color: #324b5f;
+  color: white;
+}
+
+.search-box::placeholder {
+  color: lightgray;
+}
+
+
+</style>
+</head>
+<body>
+
+<p>Hello World!</p>
+<p>This paragraph is styled with CSS.</p>
+<p>CSS comments are not shown in the output.</p>
+<div class="breadcrumb-container">
+    <div class="breadcrumb">
+      <span class="breadcrumb-item">Technology</span>
+      <span class="breadcrumb-separator">></span>
+      <span class="breadcrumb-item">Health</span>
+      <span class="breadcrumb-separator">></span>
+      <span class="breadcrumb-item active">RP3 Stimulation Crew</span>
+    </div>
+    <div class="tabs">
+      <button class="tab active">RP3 Stimulation Crew</button>
+      <button class="tab">RP3 Coil Tubing</button>
+      <button class="tab">RP3 Wireline</button>
+    </div>
+    <div class="search-container">
+      <input type="text" class="search-box" placeholder="Search Asset" />
+    </div>
+  </div>
+  
+  
+
+</body>
+</html>
+
+
