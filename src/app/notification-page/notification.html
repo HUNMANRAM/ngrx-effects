@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Notification</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aegis-controls/1.0.0/aegis-controls.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e1e2f;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #2a2a3b;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .container h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #3b3b4d;
+      color: #fff;
+    }
+
+    .row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .row .form-group {
+      flex: 1;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button.submit {
+      background-color: #0078d4;
+      color: #fff;
+    }
+
+    button.cancel {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .alarm-type,
+    .severity {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+    }
+
+    .alarm-type button,
+    .severity button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .alarm-type button.active,
+    .severity button.active {
+      background-color: #0078d4;
+      color: #fff;
+    }
+
+    .file-upload {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border: 1px dashed #0078d4;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .file-upload input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Create Notification</h1>
+    <form>
+      <div class="row">
+        <div class="form-group">
+          <label for="client-name">Client Name</label>
+          <input type="text" id="client-name" value="SLB" readonly>
+        </div>
+        <div class="form-group">
+          <label for="mtm-id">MTM-ID</label>
+          <input type="text" id="mtm-id" value="MTM-167" readonly>
+        </div>
+        <div class="form-group">
+          <label for="crew-name">Crew Name</label>
+          <input type="text" id="crew-name" value="UDH-KSA-UC-1074" readonly>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="asset-number">Asset Number</label>
+          <select id="asset-number">
+            <option>Select Asset Number</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="impacted-asset">Impacted Asset Number</label>
+          <select id="impacted-asset">
+            <option>Select Asset Number</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="asset-type">Asset Type</label>
+          <select id="asset-type">
+            <option>Select Type</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="component">Component</label>
+          <select id="component">
+            <option>Select Component</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="deficiency">Deficiency</label>
+          <select id="deficiency">
+            <option>Select Type</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="root-cause">Root Cause</label>
+          <select id="root-cause">
+            <option>Select Component</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="rsc-notification">RSC Notification Creator</label>
+          <select id="rsc-notification">
+            <option>Select Type</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="email">My Email ID</label>
+          <input type="text" id="email" placeholder="Type here...">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Select Alarm Type</label>
+        <div class="alarm-type">
+          <button type="button" class="active">PHM</button>
+          <button type="button">Threshold</button>
+          <button type="button">Outlier</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Select Severity</label>
+        <div class="severity">
+          <button type="button" class="active">Warning</button>
+          <button type="button">Severe</button>
+          <button type="button">Critical</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" rows="3" placeholder="Start typing here..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Attach Graph</label>
+        <div class="file-upload">
+          <input type="file" id="attach-file">
+          <p>Click to upload a file</p>
+          <small>Allowed File Extensions: .doc, .pdf, .ppt, .txt, .xls</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="maintenance-dr">Maintenance DR?</label>
+        <input type="checkbox" id="maintenance-dr">
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="cancel">Cancel</button>
+        <button type="submit" class="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
