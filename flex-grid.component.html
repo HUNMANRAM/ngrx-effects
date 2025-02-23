@@ -1,0 +1,8 @@
+<wj-flex-grid #flexGrid [itemsSource]="collectionView">
+    <!-- Dynamically generate columns based on the `columns` input -->
+    <wj-flex-grid-column
+      *ngFor="let col of columns"
+      [header]="col.header"
+      [binding]="col.binding">
+    </wj-flex-grid-column>
+  </wj-flex-grid>
